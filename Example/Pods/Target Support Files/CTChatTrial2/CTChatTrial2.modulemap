@@ -1,0 +1,6 @@
+framework module CTChatTrial2 {
+  umbrella header "CTChatTrial2-umbrella.h"
+
+  export *
+  module * { export * }
+}

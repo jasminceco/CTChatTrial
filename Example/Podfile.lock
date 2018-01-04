@@ -1,0 +1,16 @@
+PODS:
+  - CTChatTrial2 (0.1.0)
+
+DEPENDENCIES:
+  - CTChatTrial2 (from `../`)
+
+EXTERNAL SOURCES:
+  CTChatTrial2:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  CTChatTrial2: 4c1bca7d65729bf8fb983d24e5e96b3e45ee3fe7
+
+PODFILE CHECKSUM: d18b863503d15d6dc41d87ca98356de86d6b7496
+
+COCOAPODS: 1.1.1

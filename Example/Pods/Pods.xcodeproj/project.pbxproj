@@ -1,0 +1,707 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0BECB421E194C9F6169431ED40DBF9E3 /* Pods-CTChatTrial2_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C484279F3961A18FCB626F7A61F0E13E /* Pods-CTChatTrial2_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2B5CF8A7316DCA499822F450DB1B5228 /* CTChatTrial2-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F81379A6FC951335FA83D6D9454E34AB /* CTChatTrial2-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3616E40BB24048C903B615D8A5888172 /* Pods-CTChatTrial2_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EB412910715AA6E17027868C2B789C0 /* Pods-CTChatTrial2_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		60490BE543072474EF8070097E4FA832 /* Pods-CTChatTrial2_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FDAD587178469B2218D01103675DFEDA /* Pods-CTChatTrial2_Example-dummy.m */; };
+		9DB5871E83528BF781094EB88E85D559 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		BA60465D849F0685DC17C97BD521772E /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3D6081D76C42A1C4A906851A58E97C /* ReplaceMe.swift */; };
+		D627329C7629EA0009ED43D18F1EF08C /* Pods-CTChatTrial2_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C543352214EFE55FB044658937CB111 /* Pods-CTChatTrial2_Tests-dummy.m */; };
+		D6DF275D197B04127C87D7B0364FD29A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		D8A0006F89DB5D85F59D3995F23BD63F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		F2FE5E01291258E5396D0DCB5C383A8C /* CTChatTrial2-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B09282B3F225F632481384EDBE18349 /* CTChatTrial2-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		44996C72CE68A73405D9692BAEC732AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7F744396D400CEE052980266100D48F1;
+			remoteInfo = CTChatTrial2;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0261E7FA4A9AF0327451F699D835E700 /* CTChatTrial2.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CTChatTrial2.modulemap; sourceTree = "<group>"; };
+		0B2B3CFD5BE4D4CBD1128FAB2EF34E60 /* Pods-CTChatTrial2_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CTChatTrial2_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		107CE5B6B88BBA203FDF935595DF5342 /* Pods-CTChatTrial2_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-CTChatTrial2_Example.modulemap"; sourceTree = "<group>"; };
+		18A283F7572533ADE43EE0E1B7686C4F /* Pods-CTChatTrial2_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CTChatTrial2_Example.release.xcconfig"; sourceTree = "<group>"; };
+		23567CCEBFFE40B1ECB516E915D7DBC8 /* Pods-CTChatTrial2_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CTChatTrial2_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		27A7CD25CE3F662ABF8C87FF0F6BC4EB /* Pods-CTChatTrial2_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CTChatTrial2_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		2E4BB386AC788FAC8EF2E14E1F08A570 /* Pods_CTChatTrial2_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CTChatTrial2_Example.framework; path = "Pods-CTChatTrial2_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EB412910715AA6E17027868C2B789C0 /* Pods-CTChatTrial2_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CTChatTrial2_Example-umbrella.h"; sourceTree = "<group>"; };
+		34B8105D020EEE250FB639A0870D7B87 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		39E0E2DE5095390ED8D3C057CFDB80A9 /* Pods-CTChatTrial2_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CTChatTrial2_Example-frameworks.sh"; sourceTree = "<group>"; };
+		3B7BDCB41719A68D6D3D8D4AE3212B74 /* Pods-CTChatTrial2_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CTChatTrial2_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		3C543352214EFE55FB044658937CB111 /* Pods-CTChatTrial2_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CTChatTrial2_Tests-dummy.m"; sourceTree = "<group>"; };
+		3D953E88448F2496A58ACA924731555E /* Pods_CTChatTrial2_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_CTChatTrial2_Tests.framework; path = "Pods-CTChatTrial2_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		40C5593B406E9B3495E181DB7B5A196C /* Pods-CTChatTrial2_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CTChatTrial2_Tests-resources.sh"; sourceTree = "<group>"; };
+		41728CBD70881CB0777A5D52B876DD50 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5598AA466034912CDDEB40AB8F6155EB /* Pods-CTChatTrial2_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CTChatTrial2_Example-resources.sh"; sourceTree = "<group>"; };
+		5E427DE6B4093AA6BB5564C77DA68DA5 /* Pods-CTChatTrial2_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CTChatTrial2_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		693502F5039939D8BEDDBA38FCF51464 /* Pods-CTChatTrial2_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CTChatTrial2_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		7B09282B3F225F632481384EDBE18349 /* CTChatTrial2-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CTChatTrial2-dummy.m"; sourceTree = "<group>"; };
+		88AAD5A260D6F683CE49F2A7F9B7CBC5 /* Pods-CTChatTrial2_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CTChatTrial2_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9C3D6081D76C42A1C4A906851A58E97C /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReplaceMe.swift; sourceTree = "<group>"; };
+		9DFD8AB0B7F163B22BFE2CEDFB6AF667 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4BBB948CEF904D3290E1798FF9F3054 /* Pods-CTChatTrial2_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-CTChatTrial2_Tests.modulemap"; sourceTree = "<group>"; };
+		AD8B9BB3DB995E02240696BD44CC8994 /* Pods-CTChatTrial2_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CTChatTrial2_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		B62BCE39ACD79D43394F1AC4E2853790 /* CTChatTrial2.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CTChatTrial2.xcconfig; sourceTree = "<group>"; };
+		BF76C805CADB2F18ADD414BC1415AFD4 /* CTChatTrial2-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CTChatTrial2-prefix.pch"; sourceTree = "<group>"; };
+		C0A4E26F6C12842CE7C599B4734A5277 /* CTChatTrial2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CTChatTrial2.framework; path = CTChatTrial2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C484279F3961A18FCB626F7A61F0E13E /* Pods-CTChatTrial2_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CTChatTrial2_Tests-umbrella.h"; sourceTree = "<group>"; };
+		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		F81379A6FC951335FA83D6D9454E34AB /* CTChatTrial2-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CTChatTrial2-umbrella.h"; sourceTree = "<group>"; };
+		FDAD587178469B2218D01103675DFEDA /* Pods-CTChatTrial2_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CTChatTrial2_Example-dummy.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3A19D2CE647E473FA202DC3B81645979 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DB5871E83528BF781094EB88E85D559 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66D88A164A4A79BA384432B90C7BE4BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6DF275D197B04127C87D7B0364FD29A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77C4365C8C2BDDFFC3A01A5C797CD32E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8A0006F89DB5D85F59D3995F23BD63F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0B3266FFA8DE4C0D492DFB89F08BD02A /* CTChatTrial2 */ = {
+			isa = PBXGroup;
+			children = (
+				A05314397DB9E29B85B52992408E2874 /* Classes */,
+			);
+			name = CTChatTrial2;
+			path = CTChatTrial2;
+			sourceTree = "<group>";
+		};
+		19A2B9A0F0A7AA5857D869705673DC29 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0261E7FA4A9AF0327451F699D835E700 /* CTChatTrial2.modulemap */,
+				B62BCE39ACD79D43394F1AC4E2853790 /* CTChatTrial2.xcconfig */,
+				7B09282B3F225F632481384EDBE18349 /* CTChatTrial2-dummy.m */,
+				BF76C805CADB2F18ADD414BC1415AFD4 /* CTChatTrial2-prefix.pch */,
+				F81379A6FC951335FA83D6D9454E34AB /* CTChatTrial2-umbrella.h */,
+				9DFD8AB0B7F163B22BFE2CEDFB6AF667 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/CTChatTrial2";
+			sourceTree = "<group>";
+		};
+		1D75F6D47A74A62C2A63996ACA1F7884 /* Pods-CTChatTrial2_Example */ = {
+			isa = PBXGroup;
+			children = (
+				34B8105D020EEE250FB639A0870D7B87 /* Info.plist */,
+				107CE5B6B88BBA203FDF935595DF5342 /* Pods-CTChatTrial2_Example.modulemap */,
+				27A7CD25CE3F662ABF8C87FF0F6BC4EB /* Pods-CTChatTrial2_Example-acknowledgements.markdown */,
+				23567CCEBFFE40B1ECB516E915D7DBC8 /* Pods-CTChatTrial2_Example-acknowledgements.plist */,
+				FDAD587178469B2218D01103675DFEDA /* Pods-CTChatTrial2_Example-dummy.m */,
+				39E0E2DE5095390ED8D3C057CFDB80A9 /* Pods-CTChatTrial2_Example-frameworks.sh */,
+				5598AA466034912CDDEB40AB8F6155EB /* Pods-CTChatTrial2_Example-resources.sh */,
+				2EB412910715AA6E17027868C2B789C0 /* Pods-CTChatTrial2_Example-umbrella.h */,
+				AD8B9BB3DB995E02240696BD44CC8994 /* Pods-CTChatTrial2_Example.debug.xcconfig */,
+				18A283F7572533ADE43EE0E1B7686C4F /* Pods-CTChatTrial2_Example.release.xcconfig */,
+			);
+			name = "Pods-CTChatTrial2_Example";
+			path = "Target Support Files/Pods-CTChatTrial2_Example";
+			sourceTree = "<group>";
+		};
+		3CC2A097E0AB1E144AA76A4CEF6EF054 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B171EF4759549F738B05E3C0956CAFC0 /* CTChatTrial2 */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		6EF8FB13CC53A62978A09BFD96244444 /* Pods-CTChatTrial2_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				41728CBD70881CB0777A5D52B876DD50 /* Info.plist */,
+				A4BBB948CEF904D3290E1798FF9F3054 /* Pods-CTChatTrial2_Tests.modulemap */,
+				5E427DE6B4093AA6BB5564C77DA68DA5 /* Pods-CTChatTrial2_Tests-acknowledgements.markdown */,
+				88AAD5A260D6F683CE49F2A7F9B7CBC5 /* Pods-CTChatTrial2_Tests-acknowledgements.plist */,
+				3C543352214EFE55FB044658937CB111 /* Pods-CTChatTrial2_Tests-dummy.m */,
+				0B2B3CFD5BE4D4CBD1128FAB2EF34E60 /* Pods-CTChatTrial2_Tests-frameworks.sh */,
+				40C5593B406E9B3495E181DB7B5A196C /* Pods-CTChatTrial2_Tests-resources.sh */,
+				C484279F3961A18FCB626F7A61F0E13E /* Pods-CTChatTrial2_Tests-umbrella.h */,
+				3B7BDCB41719A68D6D3D8D4AE3212B74 /* Pods-CTChatTrial2_Tests.debug.xcconfig */,
+				693502F5039939D8BEDDBA38FCF51464 /* Pods-CTChatTrial2_Tests.release.xcconfig */,
+			);
+			name = "Pods-CTChatTrial2_Tests";
+			path = "Target Support Files/Pods-CTChatTrial2_Tests";
+			sourceTree = "<group>";
+		};
+		7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				3CC2A097E0AB1E144AA76A4CEF6EF054 /* Development Pods */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				A2358FC040701821D6217176DFEDD14D /* Products */,
+				FADCF471544CA8B2304A56E09343FCAE /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		A05314397DB9E29B85B52992408E2874 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				9C3D6081D76C42A1C4A906851A58E97C /* ReplaceMe.swift */,
+			);
+			name = Classes;
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		A2358FC040701821D6217176DFEDD14D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C0A4E26F6C12842CE7C599B4734A5277 /* CTChatTrial2.framework */,
+				2E4BB386AC788FAC8EF2E14E1F08A570 /* Pods_CTChatTrial2_Example.framework */,
+				3D953E88448F2496A58ACA924731555E /* Pods_CTChatTrial2_Tests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B171EF4759549F738B05E3C0956CAFC0 /* CTChatTrial2 */ = {
+			isa = PBXGroup;
+			children = (
+				0B3266FFA8DE4C0D492DFB89F08BD02A /* CTChatTrial2 */,
+				19A2B9A0F0A7AA5857D869705673DC29 /* Support Files */,
+			);
+			name = CTChatTrial2;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FADCF471544CA8B2304A56E09343FCAE /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				1D75F6D47A74A62C2A63996ACA1F7884 /* Pods-CTChatTrial2_Example */,
+				6EF8FB13CC53A62978A09BFD96244444 /* Pods-CTChatTrial2_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		78516C20BC93054D06CCA1923ECA468B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BECB421E194C9F6169431ED40DBF9E3 /* Pods-CTChatTrial2_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F00C4E094E9CEF01ED0486E8EFCBB6F9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B5CF8A7316DCA499822F450DB1B5228 /* CTChatTrial2-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1304160BFF3BE8E968516F100E69ADC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3616E40BB24048C903B615D8A5888172 /* Pods-CTChatTrial2_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		7F744396D400CEE052980266100D48F1 /* CTChatTrial2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F397DD18770D57B9B2645D49110CA72B /* Build configuration list for PBXNativeTarget "CTChatTrial2" */;
+			buildPhases = (
+				5C6BA0F42578F925B4E378A79F431F88 /* Sources */,
+				3A19D2CE647E473FA202DC3B81645979 /* Frameworks */,
+				F00C4E094E9CEF01ED0486E8EFCBB6F9 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CTChatTrial2;
+			productName = CTChatTrial2;
+			productReference = C0A4E26F6C12842CE7C599B4734A5277 /* CTChatTrial2.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E3D445AB603FC7605F42E6A729564F5C /* Pods-CTChatTrial2_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2178D32A6AF8DD9A6C4E0B85A81B5CA /* Build configuration list for PBXNativeTarget "Pods-CTChatTrial2_Example" */;
+			buildPhases = (
+				8027F3487FE77A748E0906C8626D8FB4 /* Sources */,
+				77C4365C8C2BDDFFC3A01A5C797CD32E /* Frameworks */,
+				F1304160BFF3BE8E968516F100E69ADC /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4295DE1918118D034232D5DEA23065B8 /* PBXTargetDependency */,
+			);
+			name = "Pods-CTChatTrial2_Example";
+			productName = "Pods-CTChatTrial2_Example";
+			productReference = 2E4BB386AC788FAC8EF2E14E1F08A570 /* Pods_CTChatTrial2_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F9CD4670A21D9B8430E42AEDD3ABE150 /* Pods-CTChatTrial2_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FE2C7CA83D37DDBA69502078FEF5D08 /* Build configuration list for PBXNativeTarget "Pods-CTChatTrial2_Tests" */;
+			buildPhases = (
+				DB45D27DD91E619D26A3BEF38C0CA9CF /* Sources */,
+				66D88A164A4A79BA384432B90C7BE4BF /* Frameworks */,
+				78516C20BC93054D06CCA1923ECA468B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-CTChatTrial2_Tests";
+			productName = "Pods-CTChatTrial2_Tests";
+			productReference = 3D953E88448F2496A58ACA924731555E /* Pods_CTChatTrial2_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = A2358FC040701821D6217176DFEDD14D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7F744396D400CEE052980266100D48F1 /* CTChatTrial2 */,
+				E3D445AB603FC7605F42E6A729564F5C /* Pods-CTChatTrial2_Example */,
+				F9CD4670A21D9B8430E42AEDD3ABE150 /* Pods-CTChatTrial2_Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5C6BA0F42578F925B4E378A79F431F88 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2FE5E01291258E5396D0DCB5C383A8C /* CTChatTrial2-dummy.m in Sources */,
+				BA60465D849F0685DC17C97BD521772E /* ReplaceMe.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8027F3487FE77A748E0906C8626D8FB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60490BE543072474EF8070097E4FA832 /* Pods-CTChatTrial2_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB45D27DD91E619D26A3BEF38C0CA9CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D627329C7629EA0009ED43D18F1EF08C /* Pods-CTChatTrial2_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4295DE1918118D034232D5DEA23065B8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CTChatTrial2;
+			target = 7F744396D400CEE052980266100D48F1 /* CTChatTrial2 */;
+			targetProxy = 44996C72CE68A73405D9692BAEC732AF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0F1526E4BB0D517F7CC7C77073B8B31C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B62BCE39ACD79D43394F1AC4E2853790 /* CTChatTrial2.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CTChatTrial2/CTChatTrial2-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CTChatTrial2/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CTChatTrial2/CTChatTrial2.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = CTChatTrial2;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		13E96A645A77DAD1FD4F541F18F5DDBF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		1CA930CA036C6413CA39D5090A9DCCB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD8B9BB3DB995E02240696BD44CC8994 /* Pods-CTChatTrial2_Example.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-CTChatTrial2_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-CTChatTrial2_Example/Pods-CTChatTrial2_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_CTChatTrial2_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		862AF3139CD84E18D34FAF2F43CD0DA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8C979EAAD6C77219C2CDDBEDA7BC7647 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B62BCE39ACD79D43394F1AC4E2853790 /* CTChatTrial2.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CTChatTrial2/CTChatTrial2-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CTChatTrial2/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CTChatTrial2/CTChatTrial2.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = CTChatTrial2;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B5D3300AB49640B763060E1D259A35D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B7BDCB41719A68D6D3D8D4AE3212B74 /* Pods-CTChatTrial2_Tests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-CTChatTrial2_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-CTChatTrial2_Tests/Pods-CTChatTrial2_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_CTChatTrial2_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F81A3B97C60F56532C7CA6B6FA26497B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 693502F5039939D8BEDDBA38FCF51464 /* Pods-CTChatTrial2_Tests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-CTChatTrial2_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-CTChatTrial2_Tests/Pods-CTChatTrial2_Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_CTChatTrial2_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FC5E0B1AFE0D577014DA9ADA77EA4C29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18A283F7572533ADE43EE0E1B7686C4F /* Pods-CTChatTrial2_Example.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-CTChatTrial2_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-CTChatTrial2_Example/Pods-CTChatTrial2_Example.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_CTChatTrial2_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13E96A645A77DAD1FD4F541F18F5DDBF /* Debug */,
+				862AF3139CD84E18D34FAF2F43CD0DA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8FE2C7CA83D37DDBA69502078FEF5D08 /* Build configuration list for PBXNativeTarget "Pods-CTChatTrial2_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5D3300AB49640B763060E1D259A35D3 /* Debug */,
+				F81A3B97C60F56532C7CA6B6FA26497B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2178D32A6AF8DD9A6C4E0B85A81B5CA /* Build configuration list for PBXNativeTarget "Pods-CTChatTrial2_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1CA930CA036C6413CA39D5090A9DCCB8 /* Debug */,
+				FC5E0B1AFE0D577014DA9ADA77EA4C29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F397DD18770D57B9B2645D49110CA72B /* Build configuration list for PBXNativeTarget "CTChatTrial2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F1526E4BB0D517F7CC7C77073B8B31C /* Debug */,
+				8C979EAAD6C77219C2CDDBEDA7BC7647 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
