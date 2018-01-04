@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'CTChatTrial2'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of CTChatTrial2.'
+  s.summary          = 'This is Chat Test lib'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,17 +18,17 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+This is Chat Test lib....
                        DESC
 
-  s.homepage         = 'https://github.com/jasminceco/CTChatTrial2'
+  s.homepage         = 'https://github.com/jasminceco/CTChatTrial'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'jasminceco' => 'jasminceco@jasmincecomac.local' }
-  s.source           = { :git => 'https://github.com/jasminceco/CTChatTrial2.git', :tag => s.version.to_s }
+  s.author           = { 'Jasmin Ceco' => 'jasminceco@gmail.com' }
+  s.source           = { :git => 'https://github.com/jasminceco/CTChatTrial.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   s.source_files = 'CTChatTrial2/Classes/**/*'
   
@@ -37,6 +37,8 @@ TODO: Add long description of the pod here.
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+    s.frameworks = 'UIKit'
+ s.dependency 'Firebase/Auth'
+ s.dependency 'Firebase/Database'
+ s.dependency 'Firebase/Storage'
 end

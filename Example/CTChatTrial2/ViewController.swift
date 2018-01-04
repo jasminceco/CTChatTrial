@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import CTChatTrial2
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        DispatchQueue.main.async {
+            let login = LoginController()
+            self.present(login, animated: true, completion: nil)
+        }
+       
         // Do any additional setup after loading the view, typically from a nib.
     }
 

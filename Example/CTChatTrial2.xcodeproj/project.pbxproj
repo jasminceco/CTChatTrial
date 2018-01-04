@@ -42,11 +42,11 @@
 		607FACE51AFB9204008FA782 /* CTChatTrial2_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CTChatTrial2_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		B3EB02FE354169D322DB8DD7 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		B3EB02FE354169D322DB8DD7 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C87A5A4AF178B1C51001B352 /* Pods-CTChatTrial2_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTChatTrial2_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CTChatTrial2_Example/Pods-CTChatTrial2_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		CE74F5DF9FC604A2E0852579 /* CTChatTrial2.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = CTChatTrial2.podspec; path = ../CTChatTrial2.podspec; sourceTree = "<group>"; };
+		CE74F5DF9FC604A2E0852579 /* CTChatTrial2.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = CTChatTrial2.podspec; path = ../CTChatTrial2.podspec; sourceTree = "<group>"; };
 		D3150EF86A7741CB9BFAC34D /* Pods-CTChatTrial2_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CTChatTrial2_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CTChatTrial2_Tests/Pods-CTChatTrial2_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		F21185BBEB1F681DB5A98B16 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		F21185BBEB1F681DB5A98B16 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,10 +215,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = HMQALEF4UR;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = HMQALEF4UR;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -508,6 +510,7 @@
 			baseConfigurationReference = C87A5A4AF178B1C51001B352 /* Pods-CTChatTrial2_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = HMQALEF4UR;
 				INFOPLIST_FILE = CTChatTrial2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -523,6 +526,7 @@
 			baseConfigurationReference = 245A28F26031F482F5F19FFE /* Pods-CTChatTrial2_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = HMQALEF4UR;
 				INFOPLIST_FILE = CTChatTrial2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -537,6 +541,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D3150EF86A7741CB9BFAC34D /* Pods-CTChatTrial2_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = HMQALEF4UR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -558,6 +563,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 26C71C8F5DE01E33BB1DFFD9 /* Pods-CTChatTrial2_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = HMQALEF4UR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
