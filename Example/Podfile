@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'CTChatTrial2_Example' do
+  pod 'CTChatTrial2', :path => '../'
+
+  target 'CTChatTrial2_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
