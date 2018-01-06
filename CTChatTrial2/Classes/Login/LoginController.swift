@@ -1,16 +1,30 @@
 //
-//  LoginController.swift
+//  ViewController.swift
 //  CTChatTrial2
 //
-//  Created by Jasmin Ceco on 04/01/2018.
+//  Created by jasminceco on 01/04/2018.
+//  Copyright (c) 2018 jasminceco. All rights reserved.
 //
 
 import Foundation
+import ObjectMapper
+import IQKeyboardManagerSwift
 
 
 public class LoginController: UIViewController {
+
+    override public func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Hide the navigation bar for current view controller
+        IQKeyboardManager.sharedManager().enable = true
+        self.navigationController?.isNavigationBarHidden = true
+    }
     
-//    var messagesController: MessagesController?
+    override public func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Show the navigation bar on other view controllers
+        self.navigationController?.isNavigationBarHidden = false
+    }
     
     let inputsContainerView: UIView = {
         let view = UIView()
@@ -33,7 +47,7 @@ public class LoginController: UIViewController {
         
         return button
     }()
-    
+   
     @objc func handleLoginRegister() {
         if loginRegisterSegmentedControl.selectedSegmentIndex == 0 {
             handleLogin()
@@ -47,22 +61,8 @@ public class LoginController: UIViewController {
             print("Form is not valid")
             return
         }
-        
-        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
-
-            if error != nil {
-                print(error ?? "")
-                return
-            }
-
-            //successfully logged in our user
-
-            self.messagesController?.fetchUserAndSetupNavBarTitle()
-
-            self.dismiss(animated: true, completion: nil)
-
-        })
-        
+        let parameters: [String:String] = ["email":email, "password": password]
+        NotificationCenter.default.post(name: .hangleLogin, object: self, userInfo:parameters)
     }
 
     
@@ -102,11 +102,11 @@ public class LoginController: UIViewController {
         return tf
     }()
     
-    lazy var profileImageView: UIImageView = {
+    lazy public var profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "gameofthrones_splash")
+        imageView.image = UIImage(named: "Jon_Snow")
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
         imageView.isUserInteractionEnabled = true

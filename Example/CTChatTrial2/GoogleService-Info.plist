@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>281143168812-b4p97q80eputeof101ok5s7umpuplg54.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.281143168812-b4p97q80eputeof101ok5s7umpuplg54</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDyy6_RAd3Q2NlyTPt1l3plRQ3NpHkzVng</string>
+	<key>GCM_SENDER_ID</key>
+	<string>281143168812</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ct.ctchattrial1</string>
+	<key>PROJECT_ID</key>
+	<string>ctchattrial1</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ctchattrial1.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:281143168812:ios:d85cf485405b4e53</string>
+	<key>DATABASE_URL</key>
+	<string>https://ctchattrial1.firebaseio.com</string>
+</dict>
+</plist>

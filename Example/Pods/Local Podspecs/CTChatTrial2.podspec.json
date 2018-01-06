@@ -16,10 +16,11 @@
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "9.0"
+    "ios": "9.3"
   },
   "source_files": "CTChatTrial2/Classes/**/*",
   "frameworks": "UIKit",
+  "static_framework": true,
   "dependencies": {
     "Firebase/Auth": [
 
@@ -28,6 +29,15 @@
 
     ],
     "Firebase/Storage": [
+
+    ],
+    "ObjectMapper": [
+
+    ],
+    "Firebase": [
+
+    ],
+    "IQKeyboardManagerSwift": [
 
     ]
   }

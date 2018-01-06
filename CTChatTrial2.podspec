@@ -36,9 +36,16 @@ This is Chat Test lib....
   #   'CTChatTrial2' => ['CTChatTrial2/Assets/*.png']
   # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-    s.frameworks = 'UIKit'
+# s.public_header_files = 'Pod/Classes/**/*.h'
+
+ s.frameworks = 'UIKit'
+
+ s.static_framework = true
  s.dependency 'Firebase/Auth'
  s.dependency 'Firebase/Database'
  s.dependency 'Firebase/Storage'
+ s.dependency 'ObjectMapper'
+ s.dependency 'Firebase'
+ s.dependency 'IQKeyboardManagerSwift'
+
 end

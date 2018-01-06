@@ -7,15 +7,32 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    class var shared: AppDelegate {
+        if Thread.isMainThread {
+            return UIApplication.shared.delegate as! AppDelegate
+        }else{
+            var realDelegate: AppDelegate?
+            let dg = DispatchGroup();
+            dg.enter()
+            DispatchQueue.main.async{
+                realDelegate = UIApplication.shared.delegate as? AppDelegate;
+                dg.leave();
+            }
+            dg.wait();
+            return realDelegate!
+        }
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
         return true
     }
 
