@@ -75,7 +75,9 @@ public class ChatLogController: UICollectionViewController, UITextFieldDelegate,
         
         if let videoUrl = info[UIImagePickerControllerMediaURL] as? URL {
             //we selected a video
-            handleVideoSelectedForUrl(videoUrl)
+//            handleVideoSelectedForUrl(videoUrl)
+            let videoUrlDict = ["videoUrl":videoUrl]
+            NotificationCenter.default.post(name: .sendVideo, object: self, userInfo: videoUrlDict)
         } else {
             //we selected an image
             NotificationCenter.default.post(name: .sendImage, object: self, userInfo: info)
@@ -117,7 +119,7 @@ public class ChatLogController: UICollectionViewController, UITextFieldDelegate,
 //        }
     }
     
-    fileprivate func thumbnailImageForFileUrl(_ fileUrl: URL) -> UIImage? {
+    public func thumbnailImageForFileUrl(_ fileUrl: URL) -> UIImage? {
         let asset = AVAsset(url: fileUrl)
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         
@@ -289,7 +291,7 @@ public class ChatLogController: UICollectionViewController, UITextFieldDelegate,
         sendMessageWithProperties(properties)
     }
     
-    fileprivate func sendMessageWithProperties(_ properties: [String: AnyObject]) {
+    public func sendMessageWithProperties(_ properties: [String: AnyObject]) {
         NotificationCenter.default.post(name: .sendChat, object: self, userInfo: properties)
     }
     

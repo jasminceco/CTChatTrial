@@ -26,6 +26,8 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(openChat(_:)), name: .openChat, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(openChatwithNewUser(_:)), name: .openNewChat, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(uploadToFirebaseStorageUsingImage(_:)), name: .sendImage, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(uploadToFirebaseStorageUsingVideo(_:)), name: .sendVideo, object: nil)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(handleLoging(_:)), name: .hangleLogin, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleRegister(_:)), name: .hangleRegister, object: nil)
     }
@@ -273,6 +275,57 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    @objc func uploadToFirebaseStorageUsingVideo(_ notification: NSNotification) {
+        if let chatLogVC = notification.object as?  ChatLogController,
+            let info = notification.userInfo as? [String:AnyObject] {
+            if let url = info["videoUrl"] as? URL {
+                let filename = UUID().uuidString + ".mov"
+                let uploadTask = Storage.storage().reference().child("message_movies").child(filename).putFile(from: url, metadata: nil, completion: { (metadata, error) in
+                    
+                    if error != nil {
+                        print("Failed upload of video:", error!)
+                        return
+                    }
+                    
+                    if let videoUrl = metadata?.downloadURL()?.absoluteString {
+                        if let thumbnailImage = chatLogVC.thumbnailImageForFileUrl(url) {
+                            
+                            let imageName = UUID().uuidString
+                            let ref = Storage.storage().reference().child("message_images").child(imageName)
+                            
+                            if let uploadData = UIImageJPEGRepresentation(thumbnailImage, 0.2) {
+                                ref.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                                    
+                                    if error != nil {
+                                        print("Failed to upload image:", error!)
+                                        return
+                                    }
+                                    
+                                    if let imageUrl = metadata?.downloadURL()?.absoluteString {
+                                        let properties: [String: AnyObject] = ["imageUrl": imageUrl as AnyObject, "imageWidth": thumbnailImage.size.width as AnyObject, "imageHeight": thumbnailImage.size.height as AnyObject, "videoUrl": videoUrl as AnyObject]
+                                        chatLogVC.sendMessageWithProperties(properties)
+                                    }
+                                    
+                                })
+                            }
+                        }
+                    }
+                })
+                
+                uploadTask.observe(.progress) { (snapshot) in
+                    if let completedUnitCount = snapshot.progress?.completedUnitCount {
+                        chatLogVC.navigationItem.title = String(completedUnitCount)
+                    }
+                }
+                
+                uploadTask.observe(.success) { (snapshot) in
+                    chatLogVC.navigationItem.title = chatLogVC.user?.name
+                }
+            }
+        }
+    }
+    
     
     @objc func uploadToFirebaseStorageUsingImage(_ notification: NSNotification) {
         if let chatLogVC = notification.object as?  ChatLogController,
