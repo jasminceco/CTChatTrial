@@ -42,7 +42,11 @@ public class MessagesController: UITableViewController, NewMessageControllerDela
     
     var messages = [Message]()
     
-    var currentUser: User!
+    public  var currentUser: User!{
+        didSet{
+            self.setupNavBarWithUser(currentUser)
+        }
+    }
 
     
     

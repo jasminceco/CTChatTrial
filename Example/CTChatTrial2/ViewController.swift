@@ -45,7 +45,19 @@ class ViewController: UIViewController {
         self.observeUserMessages()
         DispatchQueue.main.async {
             let inbox = MessagesController()
-            vc.navigationController?.pushViewController(inbox, animated: true)
+            guard let uid = Auth.auth().currentUser?.uid else{
+                return
+            }
+            
+            Database.database().reference().child(self.DB_User_Table).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                if let json = snapshot.value as? [String: AnyObject] {
+                    let user = User(JSON: json)
+                    inbox.currentUser = user
+                   vc.navigationController?.pushViewController(inbox, animated: true)
+                }
+                
+            }, withCancel: nil)
+            
         }
     }
     
