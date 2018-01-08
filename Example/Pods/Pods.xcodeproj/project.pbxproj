@@ -166,6 +166,8 @@
 		BE3FC4401FFF9BEB00ED161F /* ChatInputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FC43E1FFF9BEB00ED161F /* ChatInputContainerView.swift */; };
 		BE3FC4411FFF9BEB00ED161F /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FC43F1FFF9BEB00ED161F /* ChatMessageCell.swift */; };
 		BE3FC4431FFFAF4200ED161F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FC4421FFFAF4200ED161F /* Extensions.swift */; };
+		BED35158200390ED0025539F /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED35157200390ED0025539F /* MenuBar.swift */; };
+		BED3515A2003BCBC0025539F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED351592003BCBC0025539F /* Configuration.swift */; };
 		BEE62A75C8E83F9968172622B07C309B /* GTMSessionFetcherService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3065D8C257500BC479B2FD8F64EE9A1D /* GTMSessionFetcherService.m */; };
 		BF56CE240D7763689DBAD82DEE6CD0C8 /* ObjectMapper-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 65961804EBA184FBF2622DB86E838EA4 /* ObjectMapper-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BFEE8F7D588B95FC72A896BF5D90268C /* IQKeyboardManagerConstantsInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A605083E4E01CF9F3851149739B604 /* IQKeyboardManagerConstantsInternal.swift */; };
@@ -518,6 +520,8 @@
 		BE3FC43E1FFF9BEB00ED161F /* ChatInputContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatInputContainerView.swift; sourceTree = "<group>"; };
 		BE3FC43F1FFF9BEB00ED161F /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		BE3FC4421FFFAF4200ED161F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		BED35157200390ED0025539F /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
+		BED351592003BCBC0025539F /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		BED4FBAA38DA3BC86E3409E5D9FCE641 /* DateFormatterTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DateFormatterTransform.swift; path = Sources/DateFormatterTransform.swift; sourceTree = "<group>"; };
 		C184F29CFC7687760D14096E5931C4D4 /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCoreDiagnostics.framework; path = Frameworks/FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
 		C1E2FEB59C4B6CFD955DB5AC61A8B9B3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
@@ -1095,6 +1099,7 @@
 		A79CD8D8C8FF77EC213E3C7E18FD4332 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				BED35157200390ED0025539F /* MenuBar.swift */,
 				BE3FC43C1FFF9BA800ED161F /* ChatLogController.swift */,
 				BE3FC43E1FFF9BEB00ED161F /* ChatInputContainerView.swift */,
 				BE3FC43F1FFF9BEB00ED161F /* ChatMessageCell.swift */,
@@ -1108,6 +1113,7 @@
 				AC79EA02B3215E83B59C20E0D6B4B1D9 /* LoginController.swift */,
 				7D9697A3E3E7CE55F6966A09A48DD04A /* LoginController+handlers.swift */,
 				BE001B0B20013BE000FA5F16 /* User.swift */,
+				BED351592003BCBC0025539F /* Configuration.swift */,
 			);
 			name = Login;
 			path = CTChatTrial2/Classes/Login;
@@ -1824,6 +1830,7 @@
 				BE3FC4331FFF761100ED161F /* MessagesController.swift in Sources */,
 				BE3FC4401FFF9BEB00ED161F /* ChatInputContainerView.swift in Sources */,
 				0E08C990CA552DF84B4470F113769CD8 /* CTChatTrial2-dummy.m in Sources */,
+				BED3515A2003BCBC0025539F /* Configuration.swift in Sources */,
 				25289B46A78DB2C0E05FFE0FDD6CB062 /* LoginController+handlers.swift in Sources */,
 				BE001B0C20013BE000FA5F16 /* User.swift in Sources */,
 				BE3FC4361FFF7A4F00ED161F /* ChatMessage.swift in Sources */,
@@ -1832,6 +1839,7 @@
 				ECDF88DC3C3E7DB83FB0B498E558FC25 /* LoginController.swift in Sources */,
 				BE3FC4381FFF7C8600ED161F /* Message.swift in Sources */,
 				BE001B0A2000F2F400FA5F16 /* NewMessageController.swift in Sources */,
+				BED35158200390ED0025539F /* MenuBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,34 +32,113 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
+enum SelectedTab: Int{
+    case conversation = 0
+    case contacts = 1
+}
 
 
 public var messagesDictionary = [String: Message]()
 
-public class MessagesController: UITableViewController, NewMessageControllerDelagate {
+public class MessagesController: UIViewController, UITableViewDelegate, UITableViewDataSource, NewMessageControllerDelagate {
 
     let cellId = "cellId"
     
     var messages = [Message]()
+    public var users = [User]()
     
     public  var currentUser: User!{
         didSet{
             self.setupNavBarWithUser(currentUser)
         }
     }
+    var selectedTab = SelectedTab.conversation
+    public var tableView = UITableView()
 
+    lazy var menuBar: MenuBar = {
+        let mb = MenuBar()
+        mb.homeController = self
+        return mb
+    }()
     
+    fileprivate func setupMenuBar() {
+        navigationController?.hidesBarsOnSwipe = true
+        if Configuration.shouldShowMessagesHeader{
+            let redView = UIView()
+            redView.backgroundColor = UIColor.lightText
+            view.addSubview(redView)
+            view.addConstraintsWithFormat(format: "H:|[v0]|", views: redView)
+            view.addConstraintsWithFormat(format: "V:|-64-[v0(60)]|", views: redView)
+            
+            redView.addSubview(menuBar)
+            redView.addConstraintsWithFormat(format: "H:|[v0]|", views: menuBar)
+            redView.addConstraintsWithFormat(format: "V:|[v0]|", views: menuBar)  
+        }
+        view.addSubview(tableView)
+        view.addConstraintsWithFormat(format: "H:|[v0]|", views:tableView)
+        view.addConstraintsWithFormat(format: "V:|-\(Configuration.messagesTableViewTopConstraint)-[v0]|", views: tableView)
+       
+        
+        
+
+//        menuBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
+    }
+    
+     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        menuBar.horizontalBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x / 4
+    }
+    
+    public func selectedTab(_ at: Int) {
+        if at != 0{
+
+            self.users.removeAll()
+            fetchUser()
+            
+            self.selectedTab = SelectedTab.contacts
+            self.tableView.reloadData()
+            return
+        }
+        self.messages.removeAll()
+        self.selectedTab = SelectedTab.conversation
+        self.handleReloadTable()
+    }
+    
+    func fetchUser() {
+        NotificationCenter.default.post(name:.fetchUsers, object: self)
+    }
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.tableFooterView = UIView()
+         setupMenuBar()
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         
         let image = UIImage(named: "new_msg_icon")
+    
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(handleNewMessage))
+        navigationItem.rightBarButtonItem?.customView?.backgroundColor = .orange
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         tableView.allowsMultipleSelectionDuringEditing = true
         NotificationCenter.default.addObserver(self, selector: #selector(MessageRecived(_:)), name: .userMessageRecived, object: nil)
+        
+        
+    }
+    public override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+        self.selectedTab = .conversation
+        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            let selectedIndexPath = IndexPath(item: 0, section: 0)
+            self.menuBar.collectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: UICollectionViewScrollPosition())
+            let x = CGFloat(selectedIndexPath.item) * self.menuBar.frame.width / 2
+            self.menuBar.horizontalBarLeftAnchorConstraint?.constant = x
+            
+            UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.menuBar.layoutIfNeeded()
+            }, completion: nil)
+        }
         
     }
     
@@ -68,46 +147,54 @@ public class MessagesController: UITableViewController, NewMessageControllerDela
     @objc func MessageRecived(_ notification: NSNotification) {
         self.handleReloadTable()
     }
-    
+
    
-    override public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+     public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    override public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+     public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         NotificationCenter.default.post(name:.deleteMessages, object: self, userInfo: self.messages[indexPath.row].toJSON())
     }
     
-    override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.selectedTab.rawValue == 0{
+            return messages.count
+        }else{
+            return users.count
+        }
     }
     
-    override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserCell
-        
-        let message = messages[indexPath.row]
-        cell.message = message
-        
+        if self.selectedTab == .conversation{
+            let message = messages[indexPath.row]
+            cell.message = message
+        }else{
+            let user = users[indexPath.row]
+            cell.textLabel?.text = user.name
+            cell.detailTextLabel?.text = user.email
+            cell.timeLabel.text = ""
+            if let profileImageUrl = user.profileImageUrl {
+                cell.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
+            }
+        }
         return cell
     }
     
-    override public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 72
     }
     
-    override  public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        NotificationCenter.default.post(name:.openChat, object: self, userInfo: self.messages[indexPath.row].toJSON())
+      public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         if self.selectedTab == .conversation{
+            NotificationCenter.default.post(name:.openChat, object: self, userInfo: self.messages[indexPath.row].toJSON())
+         }else{
+            NotificationCenter.default.post(name:.openNewChat, object: self, userInfo: self.users[indexPath.row].toJSON())
+        }
     }
-    
-
-    public func attemptReloadOfTable() {
-        self.timer?.invalidate()
-        
-        self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handleReloadTable), userInfo: nil, repeats: false)
-    }
-    
-    var timer: Timer?
-    
+  
     @objc func handleReloadTable() {
         
         self.messages = Array(messagesDictionary.values)

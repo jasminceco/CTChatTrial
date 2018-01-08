@@ -66,6 +66,37 @@ public extension UIApplication {
     
 }
 
+public extension UIImage {
+    
+    /**
+     Returns an UIImage with a specified background color.
+     - parameter color: The color of the background
+     */
+    convenience public init(withBackground color: UIColor) {
+        
+        let rect: CGRect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        UIGraphicsBeginImageContext(rect.size);
+        let context:CGContext = UIGraphicsGetCurrentContext()!;
+        context.setFillColor(color.cgColor);
+        context.fill(rect)
+        
+        let image:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        self.init(ciImage: CIImage(image: image)!)
+        
+    }
+    public func imageWithColor(tintColor: UIColor) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
+        tintColor.setFill()
+        UIRectFill(rect)
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return image
+    }
+}
+
 // MARK: - Methods
 public extension UINavigationController {
     
@@ -76,7 +107,7 @@ public extension UINavigationController {
         // https://github.com/cotkjaer/UserInterface/blob/master/UserInterface/UIViewController.swift
         CATransaction.begin()
         CATransaction.setCompletionBlock(completion)
-        popViewController(animated: true)
+        popViewController(animated: false)
         CATransaction.commit()
     }
     
@@ -104,4 +135,22 @@ public extension UINavigationController {
         navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: tint]
     }
     
+}
+
+public extension UIColor {
+    public static func rgb(_ red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
+        return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
+    }
+}
+public extension UIView {
+    public func addConstraintsWithFormat(format: String, views: UIView...) {
+        var viewsDictionary = [String: UIView]()
+        for (index, view) in views.enumerated() {
+            let key = "v\(index)"
+            view.translatesAutoresizingMaskIntoConstraints = false
+            viewsDictionary[key] = view
+        }
+        
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
+    }
 }

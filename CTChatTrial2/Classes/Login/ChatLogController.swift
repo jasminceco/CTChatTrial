@@ -221,7 +221,7 @@ public class ChatLogController: UICollectionViewController, UITextFieldDelegate,
    
         if message.fromId == self.currentUser{
             //outgoing blue
-            cell.bubbleView.backgroundColor = ChatMessageCell.blueColor
+            cell.bubbleView.backgroundColor = Configuration.ChatBubbleFromColor
             cell.textView.textColor = UIColor.white
             cell.profileImageView.isHidden = true
             
@@ -230,7 +230,7 @@ public class ChatLogController: UICollectionViewController, UITextFieldDelegate,
             
         } else {
             //incoming gray
-            cell.bubbleView.backgroundColor = UIColor(r: 240, g: 240, b: 240)
+            cell.bubbleView.backgroundColor =  Configuration.ChatBubbleToColor
             cell.textView.textColor = UIColor.black
             cell.profileImageView.isHidden = false
             

@@ -30,6 +30,8 @@ class ViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleLoging(_:)), name: .hangleLogin, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleRegister(_:)), name: .hangleRegister, object: nil)
+        Configuration.shouldShowMessagesHeader = true
+        Configuration.ChatBubbleFromColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -179,6 +181,17 @@ class ViewController: UIViewController {
                         vc.tableView.reloadData()
                     })
                 }
+                if UIApplication.topViewController() is MessagesController{
+                    let vc = UIApplication.topViewController() as!  MessagesController
+                    
+                    user?.id = snapshot.key
+                    vc.users.append(user!)
+                    
+                    //this will crash because of background thread, so lets use dispatch_async to fix
+                    DispatchQueue.main.async(execute: {
+                        vc.tableView.reloadData()
+                    })
+                }
             }
         }, withCancel: nil)
     }
@@ -247,7 +260,7 @@ class ViewController: UIViewController {
                         return
                     }
                     messagesDictionary.removeValue(forKey: chatPartnerId)
-                    messagesController.attemptReloadOfTable()
+                    messagesController.tableView.reloadData()
                 })
             }
         }
@@ -282,7 +295,23 @@ class ViewController: UIViewController {
             if  let user = User(JSON:json){
                 self.toUserID = user.id
                 self.observeMessages()
-                newMessageController.delegate.startChatNewChatWith(user: user, currentUser: (Auth.auth().currentUser?.uid)!)
+                newMessageController.navigationController?.popViewController({
+                    if UIApplication.topViewController() is MessagesController{
+                        let messagesController = UIApplication.topViewController() as!  MessagesController
+                        
+                        messagesController.startChatWith(user: user, currentUser: (Auth.auth().currentUser?.uid)!)
+                    }
+                })
+    
+                
+            }
+        }
+        if let messagesController = notification.object as?  MessagesController,
+            let json = notification.userInfo as? [String:AnyObject] {
+            if  let user = User(JSON:json){
+                self.toUserID = user.id
+                self.observeMessages()
+                messagesController.startChatWith(user: user, currentUser: (Auth.auth().currentUser?.uid)!)
                 
             }
         }

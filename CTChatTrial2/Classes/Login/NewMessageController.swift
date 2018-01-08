@@ -63,7 +63,7 @@ public class NewMessageController: UITableViewController {
     var messagesController: MessagesController?
     
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController?.popViewController(animated: true)
+//        self.navigationController?.popViewController(animated: true)
         NotificationCenter.default.post(name:.openNewChat, object: self, userInfo: self.users[indexPath.row].toJSON())
     }
 
