@@ -269,11 +269,11 @@ extension ChatMessageCell: QLPreviewControllerDataSource, QLPreviewControllerDel
     
     public func previewControllerDidDismiss(_ controller: QLPreviewController) {
         print("The Preview Controller has been dismissed.")
-        if self.myPreviewController != nil {
-            self.myPreviewController.dataSource = nil
-            self.myPreviewController.delegate = nil
-            self.myPreviewController.removeFromParentViewController()
-        }
+        
+        self.myPreviewController.dataSource = nil
+        self.myPreviewController.delegate = nil
+        self.myPreviewController.removeFromParentViewController()
+        
     }
   
     
