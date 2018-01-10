@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CTChatTrial2'
-  s.version          = '0.5.0'
+  s.version          = '0.6.0'
   s.summary          = 'This is Chat Test lib'
 
 # This description is used to generate tags and improve search results.
