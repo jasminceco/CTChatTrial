@@ -16,5 +16,9 @@ public class Configuration{
     }()
     
     public static var ChatBubbleFromColor = UIColor(r: 0, g: 137, b: 249)
+    public static var ChatViewsBackgroundColoar = UIColor(r: 248, g: 248, b: 248)
     public static var ChatBubbleToColor = UIColor(r: 240, g: 240, b: 240)
+    public static var ChatBubbleMaxWidth: Int = 200
+    public static var ChatBubbleHasBlip: Bool = true
+    
 }

@@ -12,6 +12,7 @@ import Firebase
 
 
 
+
 class ViewController: UIViewController {
     
     var DB_User_Table = "users"
@@ -31,7 +32,17 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleRegister(_:)), name: .hangleRegister, object: nil)
         //MARK: Configure chat :)
         Configuration.shouldShowMessagesHeader = true
-        Configuration.ChatBubbleFromColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
+        Configuration.ChatBubbleFromColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
+        Configuration.ChatBubbleToColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
+        
+        if UIDevice.current.userInterfaceIdiom == .pad{
+            Configuration.ChatBubbleMaxWidth = 400
+        }else{
+          Configuration.ChatBubbleMaxWidth = 200
+             //Int(UIScreen.main.bounds.width / CGFloat(1.3))
+        }
+        
+        Configuration.ChatBubbleHasBlip = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

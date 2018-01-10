@@ -78,10 +78,8 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
         view.addConstraintsWithFormat(format: "H:|[v0]|", views:tableView)
         view.addConstraintsWithFormat(format: "V:|-\(Configuration.messagesTableViewTopConstraint)-[v0]|", views: tableView)
        
-        
-        
-
-//        menuBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
+        self.view.backgroundColor = Configuration.ChatViewsBackgroundColoar
+        self.tableView.backgroundColor = Configuration.ChatViewsBackgroundColoar
     }
     
      public func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -139,9 +137,13 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
                 self.menuBar.layoutIfNeeded()
             }, completion: nil)
         }
-        
+
     }
     
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+//        self.tableView.addTopBorderWithHeight(height: 4, color: .lightGray, leftOffset: 0, rightOffset: 0, topOffset: -3)
+    }
  
     
     @objc func MessageRecived(_ notification: NSNotification) {
@@ -166,25 +168,18 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
     }
     
      public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserCell
+        cell.backgroundColor = Configuration.ChatViewsBackgroundColoar
         if self.selectedTab == .conversation{
-            let message = messages[indexPath.row]
-            cell.message = message
+            cell.message = messages[indexPath.row]
         }else{
-            let user = users[indexPath.row]
-            cell.textLabel?.text = user.name
-            cell.detailTextLabel?.text = user.email
-            cell.timeLabel.text = ""
-            if let profileImageUrl = user.profileImageUrl {
-                cell.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
-            }
+            cell.user = users[indexPath.row]
         }
         return cell
     }
     
      public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 72
+        return 80
     }
     
       public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -224,13 +219,10 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
         messages.removeAll()
         messagesDictionary.removeAll()
         tableView.reloadData()
-        
-//        observeUserMessages()
-        
+
         let titleView = UIView()
         titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-//        titleView.backgroundColor = UIColor.redColor()
-        
+
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
         titleView.addSubview(containerView)
@@ -245,9 +237,7 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
         }
         
         containerView.addSubview(profileImageView)
-        
-        //ios 9 constraint anchors
-        //need x,y,width,height anchors
+
         profileImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
         profileImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
         profileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
@@ -258,7 +248,6 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
         containerView.addSubview(nameLabel)
         nameLabel.text = user.name
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        //need x,y,width,height anchors
         nameLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 8).isActive = true
         nameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
         nameLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
@@ -268,8 +257,6 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
         containerView.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
         
         self.navigationItem.titleView = titleView
-        
-//        titleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showChatController)))
     }
     
     public  func showChatControllerForUser(_ user: User) {

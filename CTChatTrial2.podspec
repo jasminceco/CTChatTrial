@@ -47,5 +47,7 @@ This is Chat Test lib....
  s.dependency 'ObjectMapper'
  s.dependency 'Firebase'
  s.dependency 'IQKeyboardManagerSwift'
+ 
+
 
 end

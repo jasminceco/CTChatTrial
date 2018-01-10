@@ -10,9 +10,16 @@ import UIKit
 
 public let imageCache = NSCache<AnyObject, AnyObject>()
 
+public extension UIView{
+    public func rotate(angle: CGFloat) {
+        let radians = angle / 180.0 * CGFloat(Double.pi)
+        let rotation = self.transform.rotated(by: radians)
+        self.transform = rotation
+    }
+}
 public extension UIImageView {
     
-      func loadImageUsingCacheWithUrlString(_ urlString: String) {
+    func loadImageUsingCacheWithUrlString(_ urlString: String) {
         
         self.image = nil
         
@@ -43,7 +50,7 @@ public extension UIImageView {
                 
             }).resume()
         }
-       
+        
     }
     
 }
@@ -154,3 +161,245 @@ public extension UIView {
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
     }
 }
+
+public extension UIView{
+    //////////
+    // Top
+    //////////
+  public  func createTopBorderWithHeight(height: CGFloat, color: UIColor) -> CALayer {
+        
+        return getOneSidedBorderWithFrame(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: height), color:color)
+    }
+    
+  public  func createViewBackedTopBorderWithHeight(height: CGFloat, color:UIColor) -> UIView {
+        return getViewBackedOneSidedBorderWithFrame(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: height), color:color)
+    }
+    
+  public  func addTopBorderWithHeight(height: CGFloat, color:UIColor) {
+        addOneSidedBorderWithFrame(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: height), color:color)
+    }
+    
+public    func addViewBackedTopBorderWithHeight(height: CGFloat, color:UIColor) {
+        addViewBackedOneSidedBorderWithFrame(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: height), color:color)
+    }
+ public   func addTopBorderWithHeightGradient(height: CGFloat, color:[CGColor]) {
+        return createGradientLayer(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: height), currentColorSet: color)
+    }
+    
+    
+    //////////
+    // Top + Offset
+    //////////
+    
+ public   func createTopBorderWithHeight(height:CGFloat, color:UIColor, leftOffset:CGFloat, rightOffset:CGFloat, topOffset:CGFloat) -> CALayer {
+        // Subtract the bottomOffset from the height and the thickness to get our final y position.
+        // Add a left offset to our x to get our x position.
+        // Minus our rightOffset and negate the leftOffset from the width to get our endpoint for the border.
+    return getOneSidedBorderWithFrame(frame: CGRect(x: 0 + leftOffset, y: 0 + topOffset, width: self.frame.size.width - leftOffset - rightOffset, height: height), color:color)
+    }
+    
+ public   func createViewBackedTopBorderWithHeight(height:CGFloat, color:UIColor, leftOffset:CGFloat, rightOffset:CGFloat, topOffset:CGFloat) -> UIView {
+        return getViewBackedOneSidedBorderWithFrame(frame: CGRect(x: 0 + leftOffset, y: 0 + topOffset, width: self.frame.size.width - leftOffset - rightOffset, height: height), color:color)
+    }
+    
+  public  func addTopBorderWithHeight(height:CGFloat, color:UIColor, leftOffset:CGFloat, rightOffset:CGFloat, topOffset:CGFloat) {
+        // Add leftOffset to our X to get start X position.
+        // Add topOffset to Y to get start Y position
+        // Subtract left offset from width to negate shifting from leftOffset.
+        // Subtract rightoffset from width to set end X and Width.
+        addOneSidedBorderWithFrame(frame: CGRect(x: 0 + leftOffset, y: 0 + topOffset, width: self.frame.size.width - leftOffset - rightOffset, height: height), color:color)
+    }
+    
+   public func addViewBackedTopBorderWithHeight(height:CGFloat, color:UIColor, leftOffset:CGFloat, rightOffset:CGFloat, topOffset:CGFloat) {
+        addViewBackedOneSidedBorderWithFrame(frame: CGRect(x: 0 + leftOffset, y: 0 + topOffset, width: self.frame.size.width - leftOffset - rightOffset, height: height), color:color)
+    }
+    
+    
+    //////////
+    // Right
+    //////////
+    
+ public   func createRightBorderWithWidth(width:CGFloat, color:UIColor) -> CALayer {
+        return getOneSidedBorderWithFrame(frame: CGRect(x: self.frame.size.width-width, y: 0, width: width, height: self.frame.size.height), color:color)
+    }
+    
+   public func createViewBackedRightBorderWithWidth(width:CGFloat, color:UIColor) -> UIView {
+        return getViewBackedOneSidedBorderWithFrame(frame: CGRect(x: self.frame.size.width-width, y: 0, width: width, height: self.frame.size.height), color:color)
+    }
+    
+  public  func addRightBorderWithWidth(width:CGFloat, color:UIColor){
+        addOneSidedBorderWithFrame(frame: CGRect(x: self.frame.size.width-width, y: 0, width: width, height: self.frame.size.height), color:color)
+    }
+    
+public    func addViewBackedRightBorderWithWidth(width:CGFloat, color:UIColor) {
+        addViewBackedOneSidedBorderWithFrame(frame: CGRect(x: self.frame.size.width-width, y: 0, width: width, height: self.frame.size.height), color:color)
+    }
+    
+    
+    //////////
+    // Right + Offset
+    //////////
+    
+ public   func createRightBorderWithWidth(width: CGFloat, color:UIColor, rightOffset:CGFloat, topOffset:CGFloat, bottomOffset:CGFloat) -> CALayer {
+        // Subtract bottomOffset from the height to get our end.
+        return getOneSidedBorderWithFrame(frame: CGRect(x: self.frame.size.width-width-rightOffset, y: 0 + topOffset, width: width, height: self.frame.size.height - topOffset - bottomOffset), color:color)
+    }
+    
+ public   func createViewBackedRightBorderWithWidth(width: CGFloat, color:UIColor, rightOffset:CGFloat, topOffset:CGFloat, bottomOffset:CGFloat) -> UIView {
+        return getViewBackedOneSidedBorderWithFrame(frame: CGRect(x: self.frame.size.width-width-rightOffset, y: 0 + topOffset, width: width, height: self.frame.size.height - topOffset - bottomOffset), color:color)
+    }
+    
+  public  func addRightBorderWithWidth(width: CGFloat, color:UIColor, rightOffset:CGFloat, topOffset:CGFloat, bottomOffset:CGFloat) {
+        // Subtract the rightOffset from our width + thickness to get our final x position.
+        // Add topOffset to our y to get our start y position.
+        // Subtract topOffset from our height, so our border doesn't extend past teh view.
+        // Subtract bottomOffset from the height to get our end.
+        addOneSidedBorderWithFrame(frame: CGRect(x: self.frame.size.width-width-rightOffset, y: 0 + topOffset, width: width, height: self.frame.size.height - topOffset - bottomOffset), color:color)
+    }
+    
+   public func addViewBackedRightBorderWithWidth(width: CGFloat, color:UIColor, rightOffset:CGFloat, topOffset:CGFloat, bottomOffset:CGFloat) {
+        addViewBackedOneSidedBorderWithFrame(frame: CGRect(x: self.frame.size.width-width-rightOffset, y: 0 + topOffset, width: width, height: self.frame.size.height - topOffset - bottomOffset), color:color)
+    }
+    
+    
+    //////////
+    // Bottom
+    //////////
+    
+  public  func createBottomBorderWithHeight(height: CGFloat, color:UIColor) -> CALayer {
+        return getOneSidedBorderWithFrame(frame: CGRect(x: 0, y: self.frame.size.height-height, width: self.frame.size.width, height: height), color:color)
+    }
+    
+  public  func createViewBackedBottomBorderWithHeight(height: CGFloat, color:UIColor) -> UIView {
+        return getViewBackedOneSidedBorderWithFrame(frame: CGRect(x: 0, y: self.frame.size.height-height, width: self.frame.size.width, height: height), color:color)
+    }
+    
+ public   func addBottomBorderWithHeight(height: CGFloat, color:UIColor) {
+        return addOneSidedBorderWithFrame(frame: CGRect(x: 0, y: self.frame.size.height-height, width: self.frame.size.width, height: height), color:color)
+    }
+ public   func addBottomBorderWithHeightGradient(height: CGFloat, color:[CGColor]) {
+        return createGradientLayer(frame: CGRect(x: 0, y: self.frame.size.height-height, width: self.frame.size.width, height: height), currentColorSet: color)
+    }
+    
+public    func addViewBackedBottomBorderWithHeight(height: CGFloat, color:UIColor) {
+        addViewBackedOneSidedBorderWithFrame(frame: CGRect(x: 0, y: self.frame.size.height-height, width: self.frame.size.width, height: height), color:color)
+    }
+    
+    
+    //////////
+    // Bottom + Offset
+    //////////
+    
+  public  func createBottomBorderWithHeight(height: CGFloat, color:UIColor, leftOffset:CGFloat, rightOffset:CGFloat, bottomOffset:CGFloat) -> CALayer {
+        // Subtract the bottomOffset from the height and the thickness to get our final y position.
+        // Add a left offset to our x to get our x position.
+        // Minus our rightOffset and negate the leftOffset from the width to get our endpoint for the border.
+        return getOneSidedBorderWithFrame(frame: CGRect(x: 0 + leftOffset, y: self.frame.size.height-height-bottomOffset, width: self.frame.size.width - leftOffset - rightOffset, height: height), color:color)
+    }
+    
+public    func createViewBackedBottomBorderWithHeight(height: CGFloat, color:UIColor, leftOffset:CGFloat, rightOffset:CGFloat, bottomOffset:CGFloat) -> UIView {
+        return getViewBackedOneSidedBorderWithFrame(frame: CGRect(x: 0 + leftOffset, y: self.frame.size.height-height-bottomOffset, width: self.frame.size.width - leftOffset - rightOffset, height: height), color:color)
+    }
+    
+ public   func addBottomBorderWithHeight(height: CGFloat, color:UIColor, leftOffset:CGFloat, rightOffset:CGFloat, bottomOffset:CGFloat) {
+        // Subtract the bottomOffset from the height and the thickness to get our final y position.
+        // Add a left offset to our x to get our x position.
+        // Minus our rightOffset and negate the leftOffset from the width to get our endpoint for the border.
+        addOneSidedBorderWithFrame(frame: CGRect(x: 0 + leftOffset, y: self.frame.size.height-height-bottomOffset, width: self.frame.size.width - leftOffset - rightOffset, height: height), color:color)
+    }
+    
+  public  func addViewBackedBottomBorderWithHeight(height: CGFloat, color:UIColor, leftOffset:CGFloat, rightOffset:CGFloat, bottomOffset:CGFloat) {
+        addViewBackedOneSidedBorderWithFrame(frame: CGRect(x: 0 + leftOffset, y: self.frame.size.height-height-bottomOffset, width: self.frame.size.width - leftOffset - rightOffset, height: height), color:color)
+    }
+    
+    
+    
+    //////////
+    // Left
+    //////////
+    
+  public  func createLeftBorderWithWidth(width: CGFloat, color:UIColor) -> CALayer {
+        return getOneSidedBorderWithFrame(frame: CGRect(x: 0, y: 0, width: width, height: self.frame.size.height), color:color)
+    }
+    
+  public  func createViewBackedLeftBorderWithWidth(width: CGFloat, color:UIColor) -> UIView {
+        return getViewBackedOneSidedBorderWithFrame(frame: CGRect(x: 0, y: 0, width: width, height: self.frame.size.height), color:color)
+    }
+    
+ public   func addLeftBorderWithWidth(width: CGFloat, color:UIColor) {
+        addOneSidedBorderWithFrame(frame: CGRect(x: 0, y: 0, width: width, height: self.frame.size.height), color:color)
+    }
+    
+  public  func addViewBackedLeftBorderWithWidth(width: CGFloat, color:UIColor) {
+        addViewBackedOneSidedBorderWithFrame(frame: CGRect(x: 0, y: 0, width: width, height: self.frame.size.height), color:color)
+    }
+    
+    
+    
+    //////////
+    // Left + Offset
+    //////////
+    
+  public  func createLeftBorderWithWidth(width:CGFloat, color:UIColor, leftOffset:CGFloat, topOffset:CGFloat, bottomOffset:CGFloat) -> CALayer {
+        return getOneSidedBorderWithFrame(frame: CGRect(x: 0 + leftOffset, y: 0 + topOffset, width: width, height: self.frame.size.height - topOffset - bottomOffset), color:color)
+    }
+    
+  public  func createViewBackedLeftBorderWithWidth(width:CGFloat, color:UIColor, leftOffset:CGFloat, topOffset:CGFloat, bottomOffset:CGFloat) -> UIView {
+        return getViewBackedOneSidedBorderWithFrame(frame: CGRect(x: 0 + leftOffset, y: 0 + topOffset, width: width, height: self.frame.size.height - topOffset - bottomOffset), color:color)
+    }
+    
+    
+ public   func addLeftBorderWithWidth(width:CGFloat, color:UIColor, leftOffset:CGFloat, topOffset:CGFloat, bottomOffset:CGFloat) {
+        addOneSidedBorderWithFrame(frame: CGRect(x: 0 + leftOffset, y: 0 + topOffset, width: width, height: self.frame.size.height - topOffset - bottomOffset), color:color)
+    }
+    
+ public   func addViewBackedLeftBorderWithWidth(width:CGFloat, color:UIColor, leftOffset:CGFloat, topOffset:CGFloat, bottomOffset:CGFloat) {
+        addViewBackedOneSidedBorderWithFrame(frame: CGRect(x: 0 + leftOffset, y: 0 + topOffset, width: width, height: self.frame.size.height - topOffset - bottomOffset), color:color)
+    }
+    
+    
+    
+    //////////
+    // Private: Our methods call these to add their borders.
+    //////////
+    
+    private func addOneSidedBorderWithFrame(frame: CGRect, color:UIColor) {
+        let border = CALayer()
+        border.frame = frame
+        border.backgroundColor = color.cgColor
+        self.layer.addSublayer(border)
+    }
+    
+ public   func createGradientLayer(frame: CGRect,currentColorSet: [CGColor],locations: [NSNumber] = [0.0, 1] , startPoint: CGPoint = CGPoint(x: 0.0, y: 0.5), endPoint: CGPoint = CGPoint(x: 1.0, y: 0.5)) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = frame
+        
+        gradientLayer.colors = currentColorSet
+        gradientLayer.locations = locations
+        
+        gradientLayer.startPoint = startPoint
+        gradientLayer.endPoint = endPoint
+        
+        self.layer.addSublayer(gradientLayer)
+    }
+ 
+    private func getOneSidedBorderWithFrame(frame: CGRect, color:UIColor) -> CALayer {
+        let border = CALayer()
+        border.frame = frame
+        border.backgroundColor = color.cgColor
+        return border
+    }
+    
+    private func addViewBackedOneSidedBorderWithFrame(frame: CGRect, color: UIColor) {
+        let border = UIView(frame: frame)
+        border.backgroundColor = color
+        self.addSubview(border)
+    }
+    
+    private func getViewBackedOneSidedBorderWithFrame(frame: CGRect, color: UIColor) -> UIView {
+        let border = UIView(frame: frame)
+        border.backgroundColor = color
+        return border
+    }
+}
+

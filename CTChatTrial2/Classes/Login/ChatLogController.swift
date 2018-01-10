@@ -49,8 +49,21 @@ public class ChatLogController: UICollectionViewController, UITextFieldDelegate,
             DispatchQueue.main.async(execute: {
                 self.collectionView?.reloadData()
                 //scroll to the last index
-                let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
-                self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+                let sectionNumber = 0
+                if let collectionView = self.collectionView{
+                        collectionView.scrollToItem(at: //scroll collection view to indexpath
+                            NSIndexPath.init(row: collectionView.numberOfItems(inSection: sectionNumber) - 1, //get last item of self collectionview (number of items -1)
+                                section: sectionNumber) as IndexPath //scroll to bottom of current section
+                            , at: UICollectionViewScrollPosition.bottom, //right, left, top, bottom, centeredHorizontally, centeredVertically
+                            animated: true)
+                }
+                
+//
+//                    let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
+//                    if indexPath.item. != nil {
+//                        self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+//                    }
+            
             })
         }
     }
@@ -75,49 +88,18 @@ public class ChatLogController: UICollectionViewController, UITextFieldDelegate,
         
         if let videoUrl = info[UIImagePickerControllerMediaURL] as? URL {
             //we selected a video
-//            handleVideoSelectedForUrl(videoUrl)
             let videoUrlDict = ["videoUrl":videoUrl]
             NotificationCenter.default.post(name: .sendVideo, object: self, userInfo: videoUrlDict)
         } else {
             //we selected an image
             NotificationCenter.default.post(name: .sendImage, object: self, userInfo: info)
-//            handleImageSelectedForInfo(info as [String : AnyObject])
+
         }
         
         dismiss(animated: true, completion: nil)
     }
     
-    fileprivate func handleVideoSelectedForUrl(_ url: URL) {
-//        let filename = UUID().uuidString + ".mov"
-//        let uploadTask = FIRStorage.storage().reference().child("message_movies").child(filename).putFile(url, metadata: nil, completion: { (metadata, error) in
-//
-//            if error != nil {
-//                print("Failed upload of video:", error!)
-//                return
-//            }
-//
-//            if let videoUrl = metadata?.downloadURL()?.absoluteString {
-//                if let thumbnailImage = self.thumbnailImageForFileUrl(url) {
-//
-//                    self.uploadToFirebaseStorageUsingImage(thumbnailImage, completion: { (imageUrl) in
-//                        let properties: [String: AnyObject] = ["imageUrl": imageUrl as AnyObject, "imageWidth": thumbnailImage.size.width as AnyObject, "imageHeight": thumbnailImage.size.height as AnyObject, "videoUrl": videoUrl as AnyObject]
-//                        self.sendMessageWithProperties(properties)
-//
-//                    })
-//                }
-//            }
-//        })
-//
-//        uploadTask.observe(.progress) { (snapshot) in
-//            if let completedUnitCount = snapshot.progress?.completedUnitCount {
-//                self.navigationItem.title = String(completedUnitCount)
-//            }
-//        }
-//
-//        uploadTask.observe(.success) { (snapshot) in
-//            self.navigationItem.title = self.user?.name
-//        }
-    }
+
     
     public func thumbnailImageForFileUrl(_ fileUrl: URL) -> UIImage? {
         let asset = AVAsset(url: fileUrl)
@@ -196,6 +178,7 @@ public class ChatLogController: UICollectionViewController, UITextFieldDelegate,
         cell.message = message
         
         cell.textView.text = message.text
+        print("message:", message.text ?? "")
         
         setupCell(cell, message: message)
         
@@ -217,29 +200,46 @@ public class ChatLogController: UICollectionViewController, UITextFieldDelegate,
     fileprivate func setupCell(_ cell: ChatMessageCell, message: Message) {
         if let profileImageUrl = self.user?.profileImageUrl {
             cell.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
+            cell.bubbleImageView.image = UIImage()
         }
    
         if message.fromId == self.currentUser{
             //outgoing blue
-            cell.bubbleView.backgroundColor = Configuration.ChatBubbleFromColor
+           
             cell.textView.textColor = UIColor.white
             cell.profileImageView.isHidden = true
-            
             cell.bubbleViewRightAnchor?.isActive = true
             cell.bubbleViewLeftAnchor?.isActive = false
             
+            if Configuration.ChatBubbleHasBlip{
+                cell.bubbleView.backgroundColor = .clear
+                cell.bubbleImageView.image = #imageLiteral(resourceName: "chat_bubble_sent").resizableImage(withCapInsets:UIEdgeInsetsMake(17, 21, 17, 21), resizingMode: .stretch).withRenderingMode(.alwaysTemplate)
+                cell.bubbleImageView.tintColor = Configuration.ChatBubbleFromColor
+            }else{
+                 cell.bubbleView.backgroundColor = Configuration.ChatBubbleFromColor
+            }
+            
+            
         } else {
             //incoming gray
-            cell.bubbleView.backgroundColor =  Configuration.ChatBubbleToColor
+            cell.bubbleView.backgroundColor =  .clear
             cell.textView.textColor = UIColor.black
             cell.profileImageView.isHidden = false
             
             cell.bubbleViewRightAnchor?.isActive = false
             cell.bubbleViewLeftAnchor?.isActive = true
+          if Configuration.ChatBubbleHasBlip{
+            cell.bubbleView.backgroundColor =  .clear
+            cell.bubbleImageView.image = #imageLiteral(resourceName: "chat_bubble_received").resizableImage(withCapInsets:UIEdgeInsetsMake(17, 21, 17, 21), resizingMode: .stretch).withRenderingMode(.alwaysTemplate)
+            cell.bubbleImageView.tintColor = Configuration.ChatBubbleToColor
+          }else{
+            cell.bubbleView.backgroundColor =   Configuration.ChatBubbleToColor
+            }
         }
         
         if let messageImageUrl = message.imageUrl {
             print(messageImageUrl)
+            cell.bubbleImageView.image = UIImage()
             cell.messageImageView.loadImageUsingCacheWithUrlString(messageImageUrl)
             cell.messageImageView.isHidden = false
             cell.bubbleView.backgroundColor = UIColor.clear
@@ -274,7 +274,7 @@ public class ChatLogController: UICollectionViewController, UITextFieldDelegate,
     }
     
     fileprivate func estimateFrameForText(_ text: String) -> CGRect {
-        let size = CGSize(width: 200, height: 1000)
+        let size = CGSize(width: Configuration.ChatBubbleMaxWidth,height: 1000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)], context: nil)
     }

@@ -1,6 +1,6 @@
 {
   "name": "CTChatTrial2",
-  "version": "0.1.0",
+  "version": "0.4.0",
   "summary": "This is Chat Test lib",
   "description": "This is Chat Test lib....",
   "homepage": "https://github.com/jasminceco/CTChatTrial",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/jasminceco/CTChatTrial.git",
-    "tag": "0.1.0"
+    "tag": "0.4.0"
   },
   "platforms": {
     "ios": "9.3"
