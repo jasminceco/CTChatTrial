@@ -8,7 +8,7 @@
 import Foundation
 import ObjectMapper
 
-public class User: Mappable {
+public class CTUser: Mappable {
     public var id: String?
     public var name: String?
     public var email: String?
