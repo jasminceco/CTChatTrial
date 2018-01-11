@@ -17,31 +17,25 @@ public class ChatLogController: UICollectionViewController, UITextFieldDelegate,
   public  var user: CTUser? {
         didSet {
             navigationItem.title = user?.name
-            
         }
     }
     
     var messages = [Message]()
     public var currentUser: CTUser?
-    
-    
     let cellId = "cellId"
     
     override public func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
-//        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
         collectionView?.alwaysBounceVertical = true
         collectionView?.backgroundColor = UIColor.white
         collectionView?.register(ChatMessageCell.self, forCellWithReuseIdentifier: cellId)
-        
         collectionView?.keyboardDismissMode = .interactive
+        collectionView?.backgroundColor  = Configuration.ChatViewsBackgroundColoar
         
         setupKeyboardObservers()
-         NotificationCenter.default.addObserver(self, selector: #selector(MessageRecived(_:)), name: .chatMessageRecived, object: nil)
         self.setupNavBarWithUser(user!, currentUser: self.currentUser!)
-        self.collectionView?.backgroundColor  = Configuration.ChatViewsBackgroundColoar
     }
     
     func setupNavBarWithUser(_ user: CTUser, currentUser: CTUser) {
@@ -93,9 +87,8 @@ public class ChatLogController: UICollectionViewController, UITextFieldDelegate,
         self.navigationItem.rightBarButtonItem  = UIBarButtonItem(customView: titleView)
     }
 
-    
-    @objc func MessageRecived(_ notification: NSNotification) {
-        if let json = notification.userInfo as? [String:AnyObject]{
+    public func MessageRecivedWithJSON(_ json: [String:AnyObject]?) {
+        if let json = json{
             let message = Message(JSON:json)
             self.messages.append(message!)
             print("on Msg Recived", message?.text ?? "")
@@ -115,6 +108,8 @@ public class ChatLogController: UICollectionViewController, UITextFieldDelegate,
             })
         }
     }
+    
+  
     
     lazy public var inputContainerView: ChatInputContainerView = {
         let chatInputContainerView = ChatInputContainerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))

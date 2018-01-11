@@ -119,9 +119,7 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
         navigationItem.rightBarButtonItem?.customView?.backgroundColor = .orange
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         tableView.allowsMultipleSelectionDuringEditing = true
-        NotificationCenter.default.addObserver(self, selector: #selector(MessageRecived(_:)), name: .userMessageRecived, object: nil)
-        
-        
+
     }
     public override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
@@ -137,20 +135,14 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
                 self.menuBar.layoutIfNeeded()
             }, completion: nil)
         }
-
+        self.handleReloadTable()
     }
     
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 //        self.tableView.addTopBorderWithHeight(height: 4, color: .lightGray, leftOffset: 0, rightOffset: 0, topOffset: -3)
     }
- 
-    
-    @objc func MessageRecived(_ notification: NSNotification) {
-        self.handleReloadTable()
-    }
 
-   
      public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -190,7 +182,7 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
         }
     }
   
-    @objc func handleReloadTable() {
+    @objc public func handleReloadTable() {
         
         self.messages = Array(messagesDictionary.values)
         self.messages.sort(by: { (message1, message2) -> Bool in

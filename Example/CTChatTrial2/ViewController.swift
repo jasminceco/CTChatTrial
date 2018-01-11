@@ -18,7 +18,8 @@ class ViewController: UIViewController {
     var DB_User_Table = "users"
     var toUserID:String!
     var currentUser: CTUser?
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(logout), name: .logout, object: nil)
@@ -58,7 +59,7 @@ class ViewController: UIViewController {
     func LogUserHierarchy(vc: UIViewController){
         self.observeUserMessages()
         DispatchQueue.main.async {
-            let inbox = MessagesController()
+             let inbox = MessagesController()
             guard let uid = Auth.auth().currentUser?.uid else{
                 return
             }
@@ -90,8 +91,9 @@ class ViewController: UIViewController {
         guard let uid = Auth.auth().currentUser?.uid, let toId = toUserID else {
             return
         }
-        
+    
         let userMessagesRef = Database.database().reference().child("user-messages").child(uid).child(toId)
+        userMessagesRef.removeAllObservers()
         userMessagesRef.observe(.childAdded, with: { (snapshot) in
             
             let messageId = snapshot.key
@@ -101,7 +103,13 @@ class ViewController: UIViewController {
                 guard let dictionary = snapshot.value as? [String: AnyObject] else {
                     return
                 }
-                NotificationCenter.default.post(name: .chatMessageRecived, object: self, userInfo: Message(JSON: dictionary)?.toJSON())
+                if UIApplication.topViewController() is ChatLogController{
+                    let vc = UIApplication.topViewController() as!  ChatLogController
+                    DispatchQueue.main.async(execute: {
+                        vc.MessageRecivedWithJSON(dictionary)
+                        vc.collectionView?.reloadData()
+                    })
+                }
             }, withCancel: nil)
             
         }, withCancel: nil)
@@ -154,14 +162,24 @@ class ViewController: UIViewController {
                             message?.imageUrl = profileImageUrl
                         }
                     }
-                    NotificationCenter.default.post(name: .userMessageRecived, object: self, userInfo: message?.toJSON())
                     
+                    if UIApplication.topViewController() is MessagesController{
+                        let vc = UIApplication.topViewController() as!  MessagesController
+                        DispatchQueue.main.async(execute: {
+                            vc.handleReloadTable()
+                        })
+                    }
                     
                 }, withCancel: nil)
                 if let chatPartnerId = message?.chatPartnerID {
                     messagesDictionary[chatPartnerId] = message
                 }
-                NotificationCenter.default.post(name: .userMessageRecived, object: self, userInfo: message?.toJSON())
+                if UIApplication.topViewController() is MessagesController{
+                    let vc = UIApplication.topViewController() as!  MessagesController
+                    DispatchQueue.main.async(execute: {
+                        vc.handleReloadTable()
+                    })
+                }
             }
             
         }, withCancel: nil)
