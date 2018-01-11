@@ -21,5 +21,6 @@ public extension Notification.Name {
     static public let logout =  Notification.Name("logout")
     static public let sendImage =  Notification.Name("sendImage")
     static public let sendVideo =  Notification.Name("sendVideo")
+    static public let observeMessages =  Notification.Name("observeMessages")
     
 }

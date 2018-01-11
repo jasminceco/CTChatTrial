@@ -11,8 +11,22 @@ import CTChatTrial2
 import Firebase
 
 
-
-
+public extension DatabaseReference {
+    
+    @discardableResult
+    public func observeOneEvent(of eventType: DataEventType, with block: @escaping (DataSnapshot) -> Swift.Void) -> DatabaseHandle {
+        
+        var handle: DatabaseHandle!
+        handle = observe(eventType) { (snapshot: DataSnapshot) in
+            self.removeObserver(withHandle: handle)
+            block(snapshot)
+        }
+        
+        return handle
+        
+    }
+    
+}
 class ViewController: UIViewController {
     
     var DB_User_Table = "users"
@@ -22,6 +36,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(observeUserMessages), name: .observeMessages, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(logout), name: .logout, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(fetchUsers), name: .fetchUsers, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sendCHAT(_:)), name: .sendChat, object: nil)
@@ -69,7 +85,6 @@ class ViewController: UIViewController {
                     let user = CTUser(JSON: json)
                     self.currentUser = user
                     self.currentUser?.id = Auth.auth().currentUser?.uid
-                    print("Current user", self.currentUser?.name ?? "") 
                     inbox.currentUser = user
                    vc.navigationController?.pushViewController(inbox, animated: true)
                 }
@@ -88,6 +103,8 @@ class ViewController: UIViewController {
     }
     
     func observeMessages() {
+        
+        
         guard let uid = Auth.auth().currentUser?.uid, let toId = toUserID else {
             return
         }
@@ -106,6 +123,7 @@ class ViewController: UIViewController {
                 if UIApplication.topViewController() is ChatLogController{
                     let vc = UIApplication.topViewController() as!  ChatLogController
                     DispatchQueue.main.async(execute: {
+                        
                         vc.MessageRecivedWithJSON(dictionary)
                         vc.collectionView?.reloadData()
                     })
@@ -174,12 +192,12 @@ class ViewController: UIViewController {
                 if let chatPartnerId = message?.chatPartnerID {
                     messagesDictionary[chatPartnerId] = message
                 }
-                if UIApplication.topViewController() is MessagesController{
-                    let vc = UIApplication.topViewController() as!  MessagesController
-                    DispatchQueue.main.async(execute: {
-                        vc.handleReloadTable()
-                    })
-                }
+//                if UIApplication.topViewController() is MessagesController{
+//                    let vc = UIApplication.topViewController() as!  MessagesController
+//                    DispatchQueue.main.async(execute: {
+//                        vc.handleReloadTable()
+//                    })
+//                }
             }
             
         }, withCancel: nil)

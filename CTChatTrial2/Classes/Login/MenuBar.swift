@@ -8,6 +8,11 @@
 
 import UIKit
 
+class HorizontalBarView: UIView {
+    
+}
+
+
 class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     lazy var collectionView: UICollectionView = {
@@ -50,8 +55,13 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
     var horizontalBarLeftAnchorConstraint: NSLayoutConstraint?
     
     func setupHorizontalBar() {
-        let horizontalBarView = UIView()
-      
+        let horizontalBarView = HorizontalBarView()
+         let horizontalBarView1 = HorizontalBarView()
+        for view in subviews{
+            if view is HorizontalBarView{
+                view.removeFromSuperview()
+            }
+        }
         horizontalBarView.backgroundColor = UIColor.clear
       
         horizontalBarView.translatesAutoresizingMaskIntoConstraints = false
@@ -64,11 +74,10 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         horizontalBarView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/2).isActive = true
         horizontalBarView.heightAnchor.constraint(equalToConstant: 4).isActive = true
         
-        let horizontalBarView1 = UIView()
         horizontalBarView1.backgroundColor = UIColor.rgb(28, green: 156, blue: 160)
         horizontalBarView.addSubview(horizontalBarView1)
         
-        
+       
         horizontalBarView.addConstraintsWithFormat(format:"H:|-36-[v0(\(horizontalBarView.frame.width / 2 - 72))]-36-|", views: horizontalBarView1)
         horizontalBarView.addConstraintsWithFormat(format:"V:|[v0(4)]|", views: horizontalBarView1)
         

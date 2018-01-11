@@ -63,13 +63,25 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
     
     fileprivate func setupMenuBar() {
         navigationController?.hidesBarsOnSwipe = true
+        for view in view.subviews{
+            if view is MenuBar{
+                let v = view as! MenuBar
+                for i in v.subviews{
+                     i.removeFromSuperview()
+                }
+            }
+            view.removeFromSuperview()
+        }
         if Configuration.shouldShowMessagesHeader{
             let redView = UIView()
             redView.backgroundColor = UIColor.lightText
             view.addSubview(redView)
             view.addConstraintsWithFormat(format: "H:|[v0]|", views: redView)
-            view.addConstraintsWithFormat(format: "V:|-64-[v0(60)]|", views: redView)
-            
+            if UIDevice.current.orientation == UIDeviceOrientation.landscapeLeft || UIDevice.current.orientation == UIDeviceOrientation.landscapeRight {
+                view.addConstraintsWithFormat(format: "V:|-24-[v0(60)]|", views: redView)
+            }else{
+               view.addConstraintsWithFormat(format: "V:|-64-[v0(60)]|", views: redView)
+            }
             redView.addSubview(menuBar)
             redView.addConstraintsWithFormat(format: "H:|[v0]|", views: menuBar)
             redView.addConstraintsWithFormat(format: "V:|[v0]|", views: menuBar)  
@@ -107,6 +119,8 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
     
     override public func viewDidLoad() {
         super.viewDidLoad()
+       
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
@@ -119,10 +133,21 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
         navigationItem.rightBarButtonItem?.customView?.backgroundColor = .orange
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         tableView.allowsMultipleSelectionDuringEditing = true
+//        NotificationCenter.default.addObserver(self, selector: #selector(MessageRecived(_:)), name: .userMessageRecived, object: nil)
+        
 
     }
+    
+    public override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: .observeMessages, object: nil)
+    }
+    
     public override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
+        //start listening to incoming messages
+        NotificationCenter.default.post(name:.observeMessages, object: self)
+        
         self.selectedTab = .conversation
         self.tableView.reloadData()
         DispatchQueue.main.async {
@@ -135,7 +160,7 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
                 self.menuBar.layoutIfNeeded()
             }, completion: nil)
         }
-        self.handleReloadTable()
+        
     }
     
     public override func viewDidLayoutSubviews() {
@@ -181,6 +206,10 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
             NotificationCenter.default.post(name:.openNewChat, object: self, userInfo: self.users[indexPath.row].toJSON())
         }
     }
+    
+    public override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        self.setupMenuBar()
+    }
   
     @objc public func handleReloadTable() {
         
@@ -222,7 +251,7 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
         let profileImageView = UIImageView()
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         profileImageView.contentMode = .scaleAspectFill
-        profileImageView.layer.cornerRadius = 20
+        profileImageView.layer.cornerRadius = 15
         profileImageView.clipsToBounds = true
         if let profileImageUrl = user.profileImageUrl {
             profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
@@ -232,8 +261,8 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
 
         profileImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
         profileImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         let nameLabel = UILabel()
         
