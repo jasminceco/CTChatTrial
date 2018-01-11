@@ -45,9 +45,9 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
     let cellId = "cellId"
     
     var messages = [Message]()
-    public var users = [User]()
+    public var users = [CTUser]()
     
-    public  var currentUser: User!{
+    public  var currentUser: CTUser!{
         didSet{
             self.setupNavBarWithUser(currentUser)
         }
@@ -215,7 +215,7 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
     
 
 
-    func setupNavBarWithUser(_ user: User) {
+    func setupNavBarWithUser(_ user: CTUser) {
         messages.removeAll()
         messagesDictionary.removeAll()
         tableView.reloadData()
@@ -259,7 +259,7 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
         self.navigationItem.titleView = titleView
     }
     
-    public  func showChatControllerForUser(_ user: User) {
+    public  func showChatControllerForUser(_ user: CTUser) {
         DispatchQueue.main.async {
             let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
             chatLogController.user = user
@@ -267,7 +267,7 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    public  func startChatWith(user: User, currentUser: String) {
+    public  func startChatWith(user: CTUser, currentUser: CTUser?) {
         DispatchQueue.main.async {
             let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
             chatLogController.user = user
@@ -276,7 +276,7 @@ public class MessagesController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    public func startChatNewChatWith(user: User, currentUser: String) {
+    public func startChatNewChatWith(user: CTUser, currentUser: CTUser?) {
         DispatchQueue.main.async {
             let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
             chatLogController.user = user

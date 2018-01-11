@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     
     var DB_User_Table = "users"
     var toUserID:String!
+    var currentUser: CTUser?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +65,10 @@ class ViewController: UIViewController {
             
             Database.database().reference().child(self.DB_User_Table).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
                 if let json = snapshot.value as? [String: AnyObject] {
-                    let user = User(JSON: json)
+                    let user = CTUser(JSON: json)
+                    self.currentUser = user
+                    self.currentUser?.id = Auth.auth().currentUser?.uid
+                    print("Current user", self.currentUser?.name ?? "") 
                     inbox.currentUser = user
                    vc.navigationController?.pushViewController(inbox, animated: true)
                 }
@@ -112,7 +116,7 @@ class ViewController: UIViewController {
         ref.observe(.childAdded, with: { (snapshot) in
             
             let userId = snapshot.key
-            Database.database().reference().child("user-messages").child(uid).child(userId).observe(.childAdded, with: { (snapshot) in
+            ref.child(userId).observe(.childAdded, with: { (snapshot) in
                 
                 let messageId = snapshot.key
                 self.fetchMessageWithMessageId(messageId)
@@ -180,7 +184,7 @@ class ViewController: UIViewController {
         Database.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
-                let user = User(JSON: dictionary)
+                let user = CTUser(JSON: dictionary)
                 if UIApplication.topViewController() is NewMessageController{
                     let vc = UIApplication.topViewController() as!  NewMessageController
                     
@@ -289,11 +293,11 @@ class ViewController: UIViewController {
                         return
                     }
                     
-                    if  let user = User(JSON: dictionary){
+                    if  let user = CTUser(JSON: dictionary){
                         user.id = chatPartnerId
                         self.toUserID = user.id
                         self.observeMessages()
-                        messagesController.startChatWith(user: user, currentUser: (Auth.auth().currentUser?.uid)!)
+                        messagesController.startChatWith(user: user, currentUser: self.currentUser)
                     }
                 }, withCancel: nil)
             }
@@ -303,14 +307,14 @@ class ViewController: UIViewController {
     @objc func openChatwithNewUser(_ notification: NSNotification) {
         if let newMessageController = notification.object as?  NewMessageController,
             let json = notification.userInfo as? [String:AnyObject] {
-            if  let user = User(JSON:json){
+            if  let user = CTUser(JSON:json){
                 self.toUserID = user.id
                 self.observeMessages()
                 newMessageController.navigationController?.popViewController({
                     if UIApplication.topViewController() is MessagesController{
                         let messagesController = UIApplication.topViewController() as!  MessagesController
                         
-                        messagesController.startChatWith(user: user, currentUser: (Auth.auth().currentUser?.uid)!)
+                        messagesController.startChatWith(user: user, currentUser: self.currentUser)
                     }
                 })
     
@@ -319,10 +323,10 @@ class ViewController: UIViewController {
         }
         if let messagesController = notification.object as?  MessagesController,
             let json = notification.userInfo as? [String:AnyObject] {
-            if  let user = User(JSON:json){
+            if  let user = CTUser(JSON:json){
                 self.toUserID = user.id
                 self.observeMessages()
-                messagesController.startChatWith(user: user, currentUser: (Auth.auth().currentUser?.uid)!)
+                messagesController.startChatWith(user: user, currentUser: self.currentUser)
                 
             }
         }
@@ -433,7 +437,10 @@ class ViewController: UIViewController {
                 guard let uid = Auth.auth().currentUser?.uid else { return }
                 
                 Database.database().reference().child(self.DB_User_Table).child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-                    if let _ = snapshot.value as? [String: AnyObject] {
+                    if let user = snapshot.value as? [String: AnyObject] {
+                        self.currentUser = CTUser(JSON: user)
+                         self.currentUser?.id = Auth.auth().currentUser?.uid
+                        print("CURRENT USER: ", self.currentUser?.email ?? "")
                         login.navigationController?.popViewController {
                             login.navigationController?.viewControllers.removeAll()
                         }
@@ -486,8 +493,9 @@ class ViewController: UIViewController {
                                     print(err!)
                                     return
                                 }
-                                if let _ = User(JSON: values){
-                                    //                                        print(user.toJSON())
+                                if let currentUser = CTUser(JSON: values){
+                                    self.currentUser = currentUser
+                                     self.currentUser?.id = Auth.auth().currentUser?.uid
                                     self.LogUserHierarchy(vc: self)
                                     
                                 }

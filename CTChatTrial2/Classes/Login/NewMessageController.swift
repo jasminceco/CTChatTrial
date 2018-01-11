@@ -10,7 +10,7 @@ import UIKit
 
 
 public protocol NewMessageControllerDelagate :class{
-    func startChatNewChatWith(user: User, currentUser: String)
+    func startChatNewChatWith(user: CTUser, currentUser: CTUser?)
 }
 
 
@@ -18,7 +18,7 @@ public class NewMessageController: UITableViewController {
     
     let cellId = "cellId"
     
-    public var users = [User]()
+    public var users = [CTUser]()
     weak public var delegate: NewMessageControllerDelagate!
     
     override public func viewDidLoad() {

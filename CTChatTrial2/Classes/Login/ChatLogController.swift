@@ -14,14 +14,15 @@ import AVFoundation
 
 public class ChatLogController: UICollectionViewController, UITextFieldDelegate, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-  public  var user: User? {
+  public  var user: CTUser? {
         didSet {
             navigationItem.title = user?.name
+            
         }
     }
     
     var messages = [Message]()
-    public var currentUser: String! = ""
+    public var currentUser: CTUser?
     
     
     let cellId = "cellId"
@@ -39,6 +40,57 @@ public class ChatLogController: UICollectionViewController, UITextFieldDelegate,
         
         setupKeyboardObservers()
          NotificationCenter.default.addObserver(self, selector: #selector(MessageRecived(_:)), name: .chatMessageRecived, object: nil)
+        self.setupNavBarWithUser(user!, currentUser: self.currentUser!)
+        self.collectionView?.backgroundColor  = Configuration.ChatViewsBackgroundColoar
+    }
+    
+    func setupNavBarWithUser(_ user: CTUser, currentUser: CTUser) {
+
+        let titleView = UIView()
+        titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
+        
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        titleView.addSubview(containerView)
+        
+       
+        
+        let profileImageView2 = UIImageView()
+        profileImageView2.translatesAutoresizingMaskIntoConstraints = false
+        profileImageView2.contentMode = .scaleAspectFill
+        profileImageView2.layer.cornerRadius = 15
+        profileImageView2.clipsToBounds = true
+        if let profileImageUrl = user.profileImageUrl {
+            profileImageView2.loadImageUsingCacheWithUrlString(profileImageUrl)
+        }
+        
+        containerView.addSubview(profileImageView2)
+
+        profileImageView2.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: -50).isActive = true
+        profileImageView2.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+        profileImageView2.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        profileImageView2.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        let profileImageView = UIImageView()
+        profileImageView.translatesAutoresizingMaskIntoConstraints = false
+        profileImageView.contentMode = .scaleAspectFill
+        profileImageView.layer.cornerRadius = 15
+        profileImageView.clipsToBounds = true
+        if let profileImageUrl = currentUser.profileImageUrl {
+            profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
+        }
+        
+        containerView.addSubview(profileImageView)
+        
+        profileImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: -25).isActive = true
+        profileImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        containerView.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
+        containerView.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
+        
+        self.navigationItem.rightBarButtonItem  = UIBarButtonItem(customView: titleView)
     }
 
     
@@ -46,24 +98,20 @@ public class ChatLogController: UICollectionViewController, UITextFieldDelegate,
         if let json = notification.userInfo as? [String:AnyObject]{
             let message = Message(JSON:json)
             self.messages.append(message!)
+            print("on Msg Recived", message?.text ?? "")
             DispatchQueue.main.async(execute: {
                 self.collectionView?.reloadData()
                 //scroll to the last index
                 let sectionNumber = 0
                 if let collectionView = self.collectionView{
+                    if collectionView.numberOfItems(inSection: sectionNumber) > 0{
                         collectionView.scrollToItem(at: //scroll collection view to indexpath
                             NSIndexPath.init(row: collectionView.numberOfItems(inSection: sectionNumber) - 1, //get last item of self collectionview (number of items -1)
                                 section: sectionNumber) as IndexPath //scroll to bottom of current section
                             , at: UICollectionViewScrollPosition.bottom, //right, left, top, bottom, centeredHorizontally, centeredVertically
                             animated: true)
+                    }
                 }
-                
-//
-//                    let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
-//                    if indexPath.item. != nil {
-//                        self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
-//                    }
-            
             })
         }
     }
@@ -176,6 +224,7 @@ public class ChatLogController: UICollectionViewController, UITextFieldDelegate,
         let message = messages[indexPath.item]
         
         cell.message = message
+        cell.backgroundColor = Configuration.ChatViewsBackgroundColoar
         
         cell.textView.text = message.text
         print("message:", message.text ?? "")
@@ -203,7 +252,7 @@ public class ChatLogController: UICollectionViewController, UITextFieldDelegate,
             cell.bubbleImageView.image = UIImage()
         }
    
-        if message.fromId == self.currentUser{
+        if message.fromId == self.currentUser?.id{
             //outgoing blue
            
             cell.textView.textColor = UIColor.white

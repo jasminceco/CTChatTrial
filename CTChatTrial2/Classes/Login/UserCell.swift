@@ -25,7 +25,7 @@ public class UserCell: UITableViewCell {
         }
     }
     
-    var user: User? {
+    var user: CTUser? {
         didSet {
             self.textLabel?.text = user?.name
             self.detailTextLabel?.text = user?.email
@@ -48,7 +48,10 @@ public class UserCell: UITableViewCell {
     override public func layoutSubviews() {
         super.layoutSubviews()
         textLabel?.frame = CGRect(x: CGFloat(avatarHeightWidth + 16) , y: textLabel!.frame.origin.y - 2, width: textLabel!.frame.width, height: textLabel!.frame.height)
-        detailTextLabel?.frame = CGRect(x: CGFloat(avatarHeightWidth + 16), y: detailTextLabel!.frame.origin.y + 2, width: detailTextLabel!.frame.width, height: detailTextLabel!.frame.height)
+    
+        detailTextLabel?.frame = CGRect(x: CGFloat(avatarHeightWidth + 16), y: detailTextLabel!.frame.origin.y + 2, width: UIScreen.main.bounds.width - CGFloat(avatarHeightWidth + 32), height: detailTextLabel!.frame.height)
+        detailTextLabel?.numberOfLines = 2
+        detailTextLabel?.lineBreakMode = .byWordWrapping
     }
   
     lazy var profileImageView: UIImageView = {
@@ -62,7 +65,7 @@ public class UserCell: UITableViewCell {
     
     let timeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 13)
+        label.font = UIFont.systemFont(ofSize: 11)
         label.textColor = UIColor.darkGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -79,8 +82,8 @@ public class UserCell: UITableViewCell {
         profileImageView.widthAnchor.constraint(equalToConstant: avatarHeightWidth).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: avatarHeightWidth).isActive = true
         
-        timeLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        timeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 18).isActive = true
+        timeLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 20).isActive = true
+        timeLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 4).isActive = true
         timeLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
         timeLabel.heightAnchor.constraint(equalTo: (textLabel?.heightAnchor)!).isActive = true
     }
